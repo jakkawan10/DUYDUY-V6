@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 import { collection, getDocs, query, where, doc, getDoc } from 'firebase/firestore'
-import { auth, db } from '@/app/firebase/firebaseAuth' // 🔄 แก้ path ตามจริงถ้าอยู่ที่อื่น
+import { auth, db, storage } from "@/lib/firebase/firebaseConfig"; 
 
 export default function MainPage() {
   const router = useRouter()
