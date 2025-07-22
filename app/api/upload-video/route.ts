@@ -1,27 +1,7 @@
-import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
-import { db } from '@/lib/db';
+import { NextRequest, NextResponse } from "next/server";
+import { getAuth } from "firebase/auth";
+import { db, storage } from "@/firebase/firebaseAuth";
 
-export const dynamic = 'force-dynamic'; // ✅ ใช้แทน config แบบใหม่
-
-export async function POST(req: Request) {
-  const session = await getServerSession(authOptions);
-
-  if (!session?.user) {
-    return new NextResponse('Unauthorized', { status: 401 });
-  }
-
-  const body = await req.json();
-  const { downloadURL, thumbnailURL } = body;
-
-  const newVideo = await db.video.create({
-    data: {
-      userId: session.user.id,
-      downloadURL,
-      thumbnailURL,
-    },
-  });
-
-  return NextResponse.json(newVideo);
+export async function POST(request: NextRequest) {
+  return NextResponse.json({ message: "upload-video endpoint works!" });
 }
