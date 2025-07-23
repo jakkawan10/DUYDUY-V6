@@ -1,18 +1,23 @@
+// app/layout.tsx
 import './globals.css'
-import Navbar from '@/components/Navbar'
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 
-export const metadata = {
+const inter = Inter({ subsets: ['latin'] })
+
+export const metadata: Metadata = {
   title: 'DUYDUY',
-  description: 'Short video app with heart system',
+  description: 'DUYDUY แอปพูดคุยและส่งหัวใจให้กัน',
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en">
-      <body>
-        <Navbar />
-        <main className="max-w-4xl mx-auto mt-4 px-4">{children}</main>
-      </body>
+    <html lang="th">
+      <body className={inter.className}>{children}</body>
     </html>
   )
 }
