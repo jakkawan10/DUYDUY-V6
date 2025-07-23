@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
-import { auth } from '@/lib/firebase'
+import { auth, db } from '@/lib/firebase/firebaseConfigs'
 import Image from 'next/image'
 
 export default function LoginPage() {

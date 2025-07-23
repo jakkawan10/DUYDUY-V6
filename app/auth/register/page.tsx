@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
-import { auth, db } from '@/lib/firebase'
+import { auth, db } from '@/lib/firebase/firebaseConfigs'
 import Image from 'next/image'
 
 export default function RegisterPage() {
