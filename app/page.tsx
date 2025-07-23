@@ -1,12 +1,29 @@
 // app/page.tsx
 "use client";
 
+import { useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FaPlayCircle, FaHeart, FaChartLine } from "react-icons/fa";
 
 export default function LandingPage() {
   const router = useRouter();
+
+  // ✅ Register service worker
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("/service-worker.js")
+          .then((registration) => {
+            console.log("Service Worker registered: ", registration);
+          })
+          .catch((error) => {
+            console.error("Service Worker registration failed: ", error);
+          });
+      });
+    }
+  }, []);
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#d1f7f0] to-white px-4">
@@ -25,9 +42,7 @@ export default function LandingPage() {
         สร้างวิดีโอในแบบคุณ <br />
         สร้างรายได้จากใจ 💖
       </p>
-      <p className="text-xs text-center text-gray-500 mt-1">
-        (1 💖 = 1 บาท)
-      </p>
+      <p className="text-xs text-center text-gray-500 mt-1">(1 💖 = 1 บาท)</p>
 
       <button
         onClick={() => router.push("/auth/register")}

@@ -1,0 +1,22 @@
+{
+  "name": "DUYDUY",
+  "short_name": "DUYDUY",
+  "description": "แอปสร้างวิดีโอแบบไม่ใช้หน้า สร้างรายได้จากใจ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#d1f7f0",
+  "theme_color": "#40E0D0",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/duyduy-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/duyduy-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

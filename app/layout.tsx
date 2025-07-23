@@ -3,12 +3,14 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
+
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: 'DUYDUY',
-  description: 'DUYDUY แอปพูดคุยและส่งหัวใจให้กัน',
-}
+export const metadata = {
+  title: "DUYDUY",
+  description: "สร้างวิดีโอแนวใหม่ สร้างรายได้จากใจ",
+  manifest: "/manifest.json"
+};
 
 export default function RootLayout({
   children,
@@ -21,3 +23,4 @@ export default function RootLayout({
     </html>
   )
 }
+
