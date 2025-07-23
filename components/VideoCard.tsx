@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { doc, increment, updateDoc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore'
-import { auth, db, storage } from '@/lib/firebase/firebaseConfig'
+import { auth } from '@/lib/firebase'
 import { Heart } from 'lucide-react'
 
 export default function VideoCard({ video }: { video: any }) {
