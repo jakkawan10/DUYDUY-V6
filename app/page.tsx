@@ -1,46 +1,56 @@
-// app/landing/page.tsx
-
+// app/page.tsx
 "use client";
 
-import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { FaPlayCircle, FaHeart, FaChartLine } from "react-icons/fa";
 
 export default function LandingPage() {
   const router = useRouter();
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-teal-100 to-white px-4">
-      {/* โลโก้ */}
+    <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#d1f7f0] to-white px-4">
       <Image
         src="/duyduy-logo.png"
         alt="DUYDUY Logo"
-        width={120}
-        height={120}
+        width={100}
+        height={100}
         className="mb-4"
       />
-
-      {/* ข้อความต้อนรับ */}
-      <h1 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-2">
+      <h1 className="text-3xl font-bold text-[#40E0D0]">DUYDUY</h1>
+      <h2 className="text-xl font-semibold mt-2 mb-1 text-gray-800">
         ยินดีต้อนรับสู่ DUYDUY
-      </h1>
-      <p className="text-center text-gray-600 mb-8 text-base md:text-lg">
-        สร้างรายได้ กดใจ 1 บาท!
+      </h2>
+      <p className="text-sm text-gray-600 mb-6">
+        สร้างวิดีโอ ➡️ สร้างรายได้ <br /> กดใจ ❤️ = 1 บาท
       </p>
 
-      {/* ปุ่มต่างๆ */}
-      <div className="flex flex-col gap-4 w-full max-w-xs">
-        <button
-          onClick={() => router.push("/login")}
-          className="bg-teal-500 text-white py-3 px-6 rounded-xl shadow hover:bg-teal-600 transition"
-        >
-          เข้าสู่ระบบ
-        </button>
-        <button
-          onClick={() => router.push("/register")}
-          className="bg-yellow-400 text-white py-3 px-6 rounded-xl shadow hover:bg-yellow-500 transition"
-        >
-          ลงทะเบียน
-        </button>
+      <button
+        onClick={() => router.push("/auth/register")}
+        className="w-64 py-2 mb-3 bg-[#40E0D0] text-white font-semibold text-lg rounded-full hover:scale-105 transition"
+      >
+        เริ่มต้นใช้งาน
+      </button>
+      <button
+        onClick={() => router.push("/auth/login")}
+        className="w-64 py-2 mb-6 border-2 border-[#40E0D0] text-[#40E0D0] font-semibold text-lg rounded-full hover:bg-[#40E0D0]/10 transition"
+      >
+        เข้าสู่ระบบ
+      </button>
+
+      <div className="space-y-2 text-gray-700 text-sm text-center">
+        <div className="flex items-center justify-center gap-2">
+          <FaPlayCircle />
+          <span>ดูวิดีโอจากทั่วโลก</span>
+        </div>
+        <div className="flex items-center justify-center gap-2">
+          <FaHeart className="text-red-500" />
+          <span>ทุกการกดใจ มีมูลค่า</span>
+        </div>
+        <div className="flex items-center justify-center gap-2">
+          <FaChartLine />
+          <span>เริ่มต้นสร้างรายได้ตั้งแต่คลิปแรก</span>
+        </div>
       </div>
     </main>
   );
