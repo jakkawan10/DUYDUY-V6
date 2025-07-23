@@ -1,42 +1,64 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-
-const navItems = [
-  { href: '/', label: '🏠 หน้าแรก' },
-  { href: '/upload', label: '⬆️ อัปโหลด' },
-  { href: '/wallet', label: '💰 กระเป๋า' },
-  { href: '/topup', label: '💸 เติมเงิน' },
-  { href: '/withdraw', label: '📤 ถอนเงิน' },
-  { href: '/history', label: '📜 ประวัติ' },
-  { href: '/profile', label: '👤 โปรไฟล์' },
-  { href: '/admin', label: '🛡️ แอดมิน' },
-]
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Navbar() {
-  const pathname = usePathname()
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow sticky top-0 z-50">
-      <div className="max-w-4xl mx-auto px-4 py-2 flex justify-between items-center">
-        <div className="text-lg font-bold">DUYDUY</div>
-        <div className="flex gap-3 text-sm">
-          {navItems.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={`px-3 py-1 rounded ${
-                pathname === href
-                  ? 'bg-blue-500 text-white'
-                  : 'hover:bg-gray-200 text-gray-700'
-              }`}
+    <nav className="bg-white border-b border-gray-200 shadow-md">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16 items-center">
+          {/* Logo */}
+          <div className="flex-shrink-0 flex items-center text-xl font-bold text-blue-500">
+            <span className="text-2xl">✌</span> <span className="ml-1">DUYDUY</span>
+          </div>
+
+          {/* Desktop menu */}
+          <div className="hidden md:flex space-x-6 items-center">
+            <NavItem label="หน้าแรก" href="/" />
+            <NavItem label="อัปโหลด" href="/upload" />
+            <NavItem label="กระเป๋า" href="/wallet" />
+            <NavItem label="แจ้งเตือน" href="/notifications" />
+            <NavItem label="โปรไฟล์" href="/profile" />
+            <NavItem label="แอดมิน" href="/admin" />
+          </div>
+
+          {/* Mobile Hamburger */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
             >
-              {label}
-            </Link>
-          ))}
+              ☰
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {isOpen && (
+        <div className="md:hidden px-4 pb-4 space-y-2 bg-white shadow">
+          <NavItem label="หน้าแรก" href="/" />
+          <NavItem label="อัปโหลด" href="/upload" />
+          <NavItem label="กระเป๋า" href="/wallet" />
+          <NavItem label="แจ้งเตือน" href="/notifications" />
+          <NavItem label="โปรไฟล์" href="/profile" />
+          <NavItem label="แอดมิน" href="/admin" />
+        </div>
+      )}
     </nav>
-  )
+  );
+}
+
+function NavItem({ label, href }: { label: string; href: string }) {
+  return (
+    <Link
+      href={href}
+      className="block text-gray-700 hover:text-blue-500 font-medium"
+    >
+      {label}
+    </Link>
+  );
 }
