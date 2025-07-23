@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth, db, storage } from "@/lib/firebase/firebaseConfig"; 
+import { auth } from '@/lib/firebase'
 import { useRouter } from "next/navigation";
 
 export default function UploadPage() {

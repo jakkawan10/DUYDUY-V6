@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
-import { auth, db, storage } from "@/lib/firebase/firebaseConfig"; 
+import { auth } from '@/lib/firebase'
 import VideoCard from '@/components/VideoCard'
 
 interface VideoData {
