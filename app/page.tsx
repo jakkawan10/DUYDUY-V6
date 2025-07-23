@@ -21,8 +21,12 @@ export default function LandingPage() {
       <h2 className="text-xl font-semibold mt-2 mb-1 text-gray-800">
         ยินดีต้อนรับสู่ DUYDUY
       </h2>
-      <p className="text-sm text-gray-600 mb-6">
-        สร้างวิดีโอ ➡️ สร้างรายได้ <br /> กดใจ ❤️ = 1 บาท
+      <p className="text-sm text-center mt-2 leading-snug">
+        สร้างวิดีโอในแบบคุณ <br />
+        สร้างรายได้จากใจ ❤
+      </p>
+      <p className="text-xs text-center text-gray-500 mt-1">
+        (1 ❤ = 1 บาท)
       </p>
 
       <button
