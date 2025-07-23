@@ -9,6 +9,11 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-}
+  // ✅ เพิ่ม config ให้ copy service-worker.js ไปยัง build
+  experimental: {
+    appDir: true,
+  },
+  output: 'standalone',
+};
 
-export default nextConfig
+export default nextConfig;
