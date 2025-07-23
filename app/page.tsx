@@ -23,10 +23,10 @@ export default function LandingPage() {
       </h2>
       <p className="text-sm text-center mt-2 leading-snug">
         สร้างวิดีโอในแบบคุณ <br />
-        สร้างรายได้จากใจ ❤
+        สร้างรายได้จากใจ 💖
       </p>
       <p className="text-xs text-center text-gray-500 mt-1">
-        (1 ❤ = 1 บาท)
+        (1 💖 = 1 บาท)
       </p>
 
       <button
