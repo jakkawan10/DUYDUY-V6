@@ -25,7 +25,7 @@ export default function LoginPage() {
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-cyan-100 to-white">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
         <div className="text-center mb-6">
-          <Image src="/duyduy-logo.png" alt="DUYDUY Logo" width={64} height={64} className="mx-auto mb-2" />
+          <Image src="/duyduy-logo-v4.png" alt="DUYDUY Logo" width={64} height={64} className="mx-auto mb-2" />
           <h1 className="text-2xl font-bold text-gray-700">เข้าสู่ระบบ DUYDUY</h1>
         </div>
         <input
