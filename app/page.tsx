@@ -28,7 +28,7 @@ export default function LandingPage() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#d1f7f0] to-white px-4">
       <Image
-        src="/duyduy-logo.png"
+        src="/duyduy-logo-v4.png"
         alt="DUYDUY Logo"
         width={100}
         height={100}
@@ -36,7 +36,7 @@ export default function LandingPage() {
       />
       <h1 className="text-3xl font-bold text-[#40E0D0]">DUYDUY</h1>
       <h2 className="text-xl font-semibold mt-2 mb-1 text-gray-800">
-        ยินดีต้อนรับสู่ DUYDUY
+        ยินดีต้อนรับ
       </h2>
       <p className="text-sm text-center mt-2 leading-snug">
         สร้างวิดีโอในแบบคุณ <br />
@@ -58,10 +58,6 @@ export default function LandingPage() {
       </button>
 
       <div className="space-y-2 text-gray-700 text-sm text-center">
-        <div className="flex items-center justify-center gap-2">
-          <FaPlayCircle />
-          <span>ดูวิดีโอจากทั่วโลก</span>
-        </div>
         <div className="flex items-center justify-center gap-2">
           <FaHeart className="text-red-500" />
           <span>ทุกการกดใจ มีมูลค่า</span>
