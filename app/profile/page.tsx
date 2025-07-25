@@ -1,52 +1,89 @@
-'use client';
+// app/profile/page.tsx
 
-import { useEffect, useState } from "react";
-import { auth, db } from "@/lib/firebase"
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { useRouter } from "next/navigation";
-import { onAuthStateChanged } from "firebase/auth";
+'use client'
+
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { getAuth, onAuthStateChanged, User } from 'firebase/auth'
+import { doc, getDoc, updateDoc } from 'firebase/firestore'
+import { db } from '@/lib/firebase'
 
 export default function ProfilePage() {
-  const [username, setUsername] = useState("");
-  const [caption, setCaption] = useState("");
-  const [loading, setLoading] = useState(true);
-  const router = useRouter();
+  const router = useRouter()
+  const auth = getAuth()
+
+  const [user, setUser] = useState<User | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  const [username, setUsername] = useState('')
+  const [bio, setBio] = useState('')
+  const [initialUsername, setInitialUsername] = useState('')
+  const [initialBio, setInitialBio] = useState('')
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        const docRef = doc(db, "users", user.uid);
-        const snap = await getDoc(docRef);
-        if (snap.exists()) {
-          const data = snap.data();
-          setUsername(data.username || "");
-          setCaption(data.caption || "");
-        }
-        setLoading(false);
+      if (!user) {
+        router.push('/login')
       } else {
-        router.push("/auth/login");
+        setUser(user)
+        const docRef = doc(db, 'users', user.uid)
+        const docSnap = await getDoc(docRef)
+        if (docSnap.exists()) {
+          const data = docSnap.data()
+          setUsername(data.username || '')
+          setBio(data.bio || '')
+          setInitialUsername(data.username || '')
+          setInitialBio(data.bio || '')
+        }
+        setLoading(false)
       }
-    });
+    })
 
-    return () => unsubscribe();
-  }, []);
+    return () => unsubscribe()
+  }, [])
 
   const handleSave = async () => {
-    const user = auth.currentUser;
-    if (user) {
-      await setDoc(doc(db, "users", user.uid), { username, caption }, { merge: true });
-      alert("บันทึกแล้ว");
-    }
-  };
+    if (!user) return
 
-  if (loading) return <p className="p-4">Loading...</p>;
+    const docRef = doc(db, 'users', user.uid)
+    await updateDoc(docRef, {
+      username,
+      bio,
+    })
+
+    setInitialUsername(username)
+    setInitialBio(bio)
+    alert('ข้อมูลถูกบันทึกแล้ว!')
+  }
+
+  if (loading) return <p>กำลังโหลดข้อมูล...</p>
 
   return (
-    <div className="p-4 max-w-md mx-auto">
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-xl shadow-md">
       <h1 className="text-2xl font-bold mb-4">โปรไฟล์ของคุณ</h1>
-      <input value={username} onChange={(e) => setUsername(e.target.value)} placeholder="ชื่อผู้ใช้" className="w-full mb-3 p-2 border rounded" />
-      <textarea value={caption} onChange={(e) => setCaption(e.target.value)} placeholder="คำบรรยายใต้โปรไฟล์" className="w-full mb-3 p-2 border rounded" />
-      <button onClick={handleSave} className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">บันทึก</button>
+
+      <label className="block mb-2 font-medium">ชื่อผู้ใช้</label>
+      <input
+        type="text"
+        className="w-full p-2 mb-4 border rounded"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+
+      <label className="block mb-2 font-medium">คำอธิบายตัวเอง</label>
+      <textarea
+        className="w-full p-2 mb-4 border rounded"
+        value={bio}
+        onChange={(e) => setBio(e.target.value)}
+      />
+
+      <button
+        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+        onClick={handleSave}
+        disabled={username === initialUsername && bio === initialBio}
+      >
+        บันทึกข้อมูล
+      </button>
     </div>
-  );
+  )
 }
